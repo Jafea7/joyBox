@@ -11,7 +11,6 @@ COPY package-lock.json .
 RUN npm i && \
   mv ./node_modules/@types/jsonstream ./node_modules/@types/JSONStream
 
-
 FROM deps as frontend
 WORKDIR /app
 
@@ -24,7 +23,6 @@ COPY .browserslistrc tsconfig.json tslint.json vue.config.js ./
 
 RUN npm run build-frontend
 
-
 FROM deps as backend
 WORKDIR /app
 
@@ -32,7 +30,6 @@ COPY backend ./backend
 COPY Shared ./Shared
 
 RUN npm run build-backend
-
 
 FROM node:current-stretch-slim
 WORKDIR /app
