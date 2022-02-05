@@ -1,4 +1,4 @@
-FROM node:current-stretch-slim AS deps
+FROM node:16.4-stretch-slim AS deps
 WORKDIR /app
 
 RUN apt-get update && \
@@ -31,7 +31,7 @@ COPY Shared ./Shared
 
 RUN npm run build-backend
 
-FROM node:current-stretch-slim
+FROM node:16.4-stretch-slim
 WORKDIR /app
 
 RUN apt-get update && \
