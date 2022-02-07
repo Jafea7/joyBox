@@ -52,7 +52,7 @@ export class CamsodaLocator extends LocatorService {
             await this.pauseFence.ExecutionFence();
 
             const response = await axios.get<OnlineInfo>(this.ONLINE_RESOURCE);
-            const streamersIndex = new Set(response.data.results.map(x => x.tpl[1]));
+            const streamersIndex = new Set(response.data.results.map((x: { tpl: any[]; }) => x.tpl[1]));
 
             [...this.observables]
                 .filter(x => streamersIndex.has(UsernameFromUrl(x)))

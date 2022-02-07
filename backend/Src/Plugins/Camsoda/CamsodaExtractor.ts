@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as Url from 'url';
+import { Logger } from '../../Common/Logger';
 
 import { UsernameFromUrl } from '../../Common/Util';
 import { StreamExtractor } from '../Plugin';
@@ -41,7 +42,9 @@ export class CamsodaExtractor implements StreamExtractor {
             return '';
 
         const host = vt.edge_servers[0];
-        return `https://${host}/${this.Prefix(vt.stream_name)}_h264_aac_${this.Quality(vt.stream_name)}/index.m3u8?token=${vt.token}`;
+//        return `https://${host}/${this.Prefix(vt.stream_name)}_h264_aac_${this.Quality(vt.stream_name)}/index.m3u8?token=${vt.token}`;
+// v1a2 = 144p, v2a2 = 240p, v3a2 = 480p, v4a2 = 720p ... the following is 720p all the time
+        return `https://${host}/${this.Prefix(vt.stream_name)}_v1/tracks-v4a2/mono.m3u8?token=${vt.token}`;
     }
     private Prefix(streamName: string) {
         return streamName.includes('/') ?
